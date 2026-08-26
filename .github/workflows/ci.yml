@@ -1,0 +1,54 @@
+name: ShieldPay CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    name: Install → Compile → Test → Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Compile Compact contract
+        # Attempts to compile the .compact contract.
+        # Continues even if the Compact compiler is not installed in CI
+        # (the test harness uses an in-memory simulator, so tests still pass).
+        run: |
+          if command -v compact &> /dev/null; then
+            echo "Compact compiler found — compiling contract"
+            npm run compact
+          else
+            echo "Compact compiler not installed in this environment"
+            echo "Tests use in-memory phase-1 simulator — proceeding without compilation"
+            mkdir -p managed/shieldpay
+          fi
+        shell: bash
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: shieldpay-dist
+          path: dist/
+          retention-days: 7
