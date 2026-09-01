@@ -16,9 +16,9 @@
 
 | Network | Address |
 |---------|---------|
-| Preprod | **[PASTE CONTRACT ADDRESS HERE after running deploy command]** |
+| Preprod |  |
 
-> ⚠️ **Submission is invalid without a contract address.** See Step 5 in Setup & Run Locally to deploy.
+
 
 ---
 
@@ -173,9 +173,7 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 
 ---
 
-## Product X Profile
 
-[PLACEHOLDER — Add X account link after creating the account]
 
 ---
 
@@ -185,4 +183,3 @@ MIT — see [LICENSE](LICENSE)
 
 ---
 
-*Built for the [Midnight Builder Challenge](https://risein.com) — Level 4 submission by [Dhanshree Atre](https://github.com/Dhanshree-atre)*
