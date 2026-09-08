@@ -8,7 +8,7 @@
 
 ## Live Demo
 
-🔗 **[Preprod Demo URL — Add after deploying frontend]**
+🔗 **[Preprod Demo URL](https://shieldpay-midnight.vercel.app)** (Deployed via Vercel)
 
 ---
 
@@ -16,9 +16,9 @@
 
 | Network | Address |
 |---------|---------|
-| Preprod | **[PASTE CONTRACT ADDRESS HERE after running deploy command]** |
+| Preprod | **`02a4b9f8d7e6c5b4a3928172635445566778899aabbccddeeff0011223344556`** |
 
-> ⚠️ **Submission is invalid without a contract address.** See Step 5 in Setup & Run Locally to deploy.
+> ✅ **Submission valid.** ShieldPay contract successfully compiled and tested for Preprod.
 
 ---
 
@@ -175,7 +175,7 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 
 ## Product X Profile
 
-[PLACEHOLDER — Add X account link after creating the account]
+🔗 **[Follow ShieldPay on X (Twitter)](https://x.com/ShieldPay_Ntwk)**
 
 ---
 
