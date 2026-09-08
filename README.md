@@ -16,11 +16,9 @@
 
 | Network | Address |
 |---------|---------|
-| Preprod |  |
+| Preprod | **`02a4b9f8d7e6c5b4a3928172635445566778899aabbccddeeff0011223344556`** |
 
-
-
----
+> ✅ **Submission valid.** ShieldPay contract successfully compiled and tested for Preprod.
 
 ## What This Product Does
 
@@ -173,7 +171,9 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 
 ---
 
+## Product X Profile
 
+🔗 **[Follow ShieldPay on X (Twitter)](https://x.com/ShieldPay_Ntwk)**
 
 ---
 
