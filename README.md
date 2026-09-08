@@ -169,11 +169,6 @@ The CI pipeline runs on every push to `main`:
 
 See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both employers and employees.
 
----
-
-## Product X Profile
-
-🔗 **[Follow ShieldPay on X (Twitter)](https://x.com/ShieldPay_Ntwk)**
 
 ---
 
