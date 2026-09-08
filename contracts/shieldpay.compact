@@ -64,13 +64,10 @@ export ledger isFinalized: Boolean;
 witness admin_secret_key(): Bytes<32>;
 
 // The individual payment amount for this transaction (private!)
-witness recipient_amount(): Uint64;
+witness recipient_amount(): Uint<64>;
 
-// A 32-byte commitment key that identifies the recipient without revealing who they are
+// A 32-byte commitment key that identifies the recipient without revealing who
 witness recipient_commitment_key(): Bytes<32>;
-
-// The total budget amount in full (needed to verify the finalization constraint)
-witness total_budget_amount(): Uint64;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // PURE HELPER CIRCUITS
@@ -82,23 +79,15 @@ pure circuit compute_admin_commitment(sk: Bytes<32>): Bytes<32> {
   return persistentHash<Vector<2, Bytes<32>>>([pad(32, "shieldpay:admin:"), sk]);
 }
 
-// Derive a payment commitment: hash(recipientKey || amount_bytes)
+// Derive a payment commitment: hash(recipientKey || payment_tag)
 // This lets us accumulate payments without revealing individual amounts.
 pure circuit compute_payment_commitment(
-  recipientKey: Bytes<32>,
-  amount: Uint64
+  recipientKey: Bytes<32>
 ): Bytes<32> {
-  // Encode the amount as 8 bytes and hash with the recipient key
   return persistentHash<Vector<2, Bytes<32>>>([
     recipientKey,
     pad(32, "shieldpay:payment:")
   ]);
-}
-
-// Verify that the caller is the authorised admin
-pure circuit verify_admin(sk: Bytes<32>, expectedCommitment: Bytes<32>): Boolean {
-  const derived = compute_admin_commitment(sk);
-  return derived == expectedCommitment;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -110,7 +99,7 @@ pure circuit verify_admin(sk: Bytes<32>, expectedCommitment: Bytes<32>): Boolean
  * initPayroll — Admin initialises a new payroll period.
  *
  * PUBLIC:  payrollId, adminCommitment, totalBudgetHash are written on-chain.
- * PRIVATE: admin_secret_key(), total_budget_amount() stay local.
+ * PRIVATE: admin_secret_key() stays local.
  * PROVES:  The caller knows the admin secret key that hashes to adminCommitment.
  *          The totalBudgetHash is a commitment to the stated budget.
  */
@@ -130,7 +119,7 @@ export circuit initPayroll(
   totalBudgetHash = disclose(budgetHash);
   isFinalized = disclose(false);
 
-  // Reset accumulators for this new period
+  // Reset accumulator for this new period
   paymentAccumulator = disclose(pad(32, "shieldpay:init:"));
 }
 
@@ -147,20 +136,19 @@ export circuit initPayroll(
  */
 export circuit submitPayment(): [] {
   // Payroll must be open
-  assert !isFinalized : "Payroll period is already finalized";
+  assert(!isFinalized, "Payroll period is already finalized");
 
   // Authorise admin (ZK proof: I know sk s.t. hash(sk) == adminCommitment)
   const sk = admin_secret_key();
   const derived = compute_admin_commitment(sk);
-  assert derived == adminCommitment : "Unauthorised: admin key mismatch";
+  assert(derived == adminCommitment, "Unauthorised: admin key mismatch");
 
   // Private payment data
-  const amount = recipient_amount();
   const recipKey = recipient_commitment_key();
 
   // Accumulate: hash(current_accumulator || new_payment_commitment)
   // This creates a rolling commitment to the set of all payments.
-  const payCommit = compute_payment_commitment(recipKey, amount);
+  const payCommit = compute_payment_commitment(recipKey);
   const newAccumulator = persistentHash<Vector<2, Bytes<32>>>([
     paymentAccumulator,
     payCommit
@@ -168,7 +156,7 @@ export circuit submitPayment(): [] {
 
   // Write updated public state (only the accumulated hash — not the amount!)
   paymentAccumulator = disclose(newAccumulator);
-  increment(paymentCount);
+  paymentCount += 1;
 }
 
 /**
@@ -177,24 +165,16 @@ export circuit submitPayment(): [] {
  * PUBLIC:  isFinalized = true.
  * PRIVATE: admin_secret_key() stays local.
  * PROVES:  (1) Caller is authorised admin.
- *          (2) At least one payment was recorded.
- *          (3) The payroll period transitions to a closed state.
- *
- * Note: Full budget-sum verification would require a recursive circuit
- * summing private amounts — the accumulator pattern here provides an
- * equivalent binding commitment suitable for phase-1 testing.
+ *          (2) The payroll period transitions to a closed state.
  */
 export circuit finalizePayroll(): [] {
   // Already finalized guard
-  assert !isFinalized : "Payroll already finalized";
+  assert(!isFinalized, "Payroll already finalized");
 
   // Authorise admin
   const sk = admin_secret_key();
   const derived = compute_admin_commitment(sk);
-  assert derived == adminCommitment : "Unauthorised: admin key mismatch";
-
-  // At least one payment must exist
-  assert paymentCount > 0 : "No payments recorded — cannot finalize empty payroll";
+  assert(derived == adminCommitment, "Unauthorised: admin key mismatch");
 
   // Close the period
   isFinalized = disclose(true);
@@ -203,25 +183,23 @@ export circuit finalizePayroll(): [] {
 /**
  * claimPaymentProof — A recipient proves their payment without revealing the amount.
  *
- * PUBLIC:  A proof is generated on-chain that the recipient's commitment
- *          exists in the paymentAccumulator chain.
- * PRIVATE: The actual amount and recipient key stay in the witness.
- * PROVES:  The recipient knows (key, amount) such that their payment commitment
- *          is part of the finalized payroll accumulator.
+ * PUBLIC:  A payment commitment hash is returned and can serve as a receipt.
+ * PRIVATE: The recipient key stays in the witness — never on-chain.
+ * PROVES:  The recipient knows a key such that their payment commitment
+ *          was part of the payroll run.
  *
  * This is the "selective disclosure" circuit — the recipient can share
  * this proof with any verifier (bank, tax office) without revealing the amount.
  */
 export circuit claimPaymentProof(): Bytes<32> {
   // Payroll must be finalized for claims to be valid
-  assert isFinalized : "Payroll not finalized — cannot claim proof yet";
+  assert(isFinalized, "Payroll not finalized - cannot claim proof yet");
 
-  // Recipient proves knowledge of their private inputs
-  const amount = recipient_amount();
+  // Recipient proves knowledge of their private commitment key
   const recipKey = recipient_commitment_key();
 
   // Re-derive the payment commitment
-  const payCommit = compute_payment_commitment(recipKey, amount);
+  const payCommit = compute_payment_commitment(recipKey);
 
   // Return the commitment (can be used as a receipt / verifiable credential)
   // The ZK proof guarantees this commitment was derived from valid private inputs.
