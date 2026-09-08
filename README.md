@@ -8,7 +8,7 @@
 
 ## Live Demo
 
-🔗 **[Preprod Demo URL](https://shieldpay-midnight.vercel.app)** (Deployed via Vercel)
+🔗 https://new-moon-level4.vercel.app/
 
 ---
 
@@ -16,9 +16,9 @@
 
 | Network | Address |
 |---------|---------|
-| Preprod | **`02a4b9f8d7e6c5b4a3928172635445566778899aabbccddeeff0011223344556`** |
+| Preprod |  |
 
-> ✅ **Submission valid.** ShieldPay contract successfully compiled and tested for Preprod.
+
 
 ---
 
@@ -173,9 +173,7 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 
 ---
 
-## Product X Profile
 
-🔗 **[Follow ShieldPay on X (Twitter)](https://x.com/ShieldPay_Ntwk)**
 
 ---
 
@@ -185,4 +183,3 @@ MIT — see [LICENSE](LICENSE)
 
 ---
 
-*Built for the [Midnight Builder Challenge](https://risein.com) — Level 4 submission by [Dhanshree Atre](https://github.com/Dhanshree-atre)*
