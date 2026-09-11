@@ -169,6 +169,12 @@ The CI pipeline runs on every push to `main`:
 
 See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both employers and employees.
 
+---
+
+## Product X Profile
+
+🔗 **[Product X (Twitter) Profile](https://x.com/dhanshree_atre)**  
+*(Note: Ensure this profile is public, has a bio describing ShieldPay, and includes at least one product-related post before resubmitting).*
 
 ---
 
