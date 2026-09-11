@@ -174,7 +174,7 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 ## Product X Profile
 
 🔗 **[Product X (Twitter) Profile](https://x.com/DHANSHREEATRE)**  
-*(Note: Ensure this profile is public, has a bio describing ShieldPay, and includes at least one product-related post before resubmitting).*
+https://x.com/DHANSHREEATRE
 
 ---
 
