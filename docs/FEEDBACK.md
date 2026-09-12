@@ -20,6 +20,6 @@ Feedback was collected via Telegram DMs, Discord groups (Midnight Builder commun
 ## What We Changed
 | Change | Reason | Commit |
 |--------|--------|--------|
-| Added detailed loading steps during ZK proof generation | Address UX confusion during slow transactions | pending |
-| Added "Download PDF Receipt" button for employees | Enable users to keep local records of their payments | pending |
-| Improved Wallet disconnect button visibility | Better wallet management UI | pending |
+| Added detailed loading steps during ZK proof generation | Address UX confusion during slow transactions | 4564ecf |
+| Added "Download PDF Receipt" button for employees | Enable users to keep local records of their payments | 4564ecf |
+| Improved Wallet disconnect button visibility | Better wallet management UI | 4564ecf |
