@@ -541,3 +541,5 @@ const generatePDFReceipt = (amount: string, hash: string) => { console.log('Crea
 // PDF includes employee ID, amount, and tx hash
 
 const downloadPDF = () => { alert('PDF Downloaded!'); };
+
+// TODO: Wire up downloadPDF to actual PDF Blob
