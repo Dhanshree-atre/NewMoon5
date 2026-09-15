@@ -533,3 +533,5 @@ export default function PayrollDashboard({ activeTab }: PayrollDashboardProps) {
 }
 
 // TODO: Implement PDF generation library import
+
+const generatePDFReceipt = (amount: string, hash: string) => { console.log('Generating PDF...'); };
