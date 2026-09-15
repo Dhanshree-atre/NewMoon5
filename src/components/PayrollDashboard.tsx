@@ -534,8 +534,8 @@ export default function PayrollDashboard({ activeTab }: PayrollDashboardProps) {
 
 // TODO: Implement PDF generation library import
 
-const generatePDFReceipt = (amount: string, hash: string) => { console.log('Generating PDF...'); };
+const generatePDFReceipt = (amount: string, hash: string) => { console.log('Creating PDF Blob...'); };
 
-const generatePDFReceipt = (amount: string, hash: string) => { console.log('Generating PDF...'); };
+const generatePDFReceipt = (amount: string, hash: string) => { console.log('Creating PDF Blob...'); };
 
 // PDF includes employee ID, amount, and tx hash
