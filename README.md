@@ -174,7 +174,7 @@ See [docs/USAGE.md](docs/USAGE.md) for full step-by-step instructions for both e
 
 ## Product X Profile
 
-🔗 **[Product X (Twitter) Profile](https://x.com/DHANSHREEATRE)**
+https://x.com/DHANSHREEATRE
 
 ---
 
