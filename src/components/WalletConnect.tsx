@@ -9,10 +9,10 @@ interface WalletState {
 interface WalletConnectProps {
   walletState: WalletState
   onConnect: () => void
-  onDisconnect: () => void
+  onDisconnect Wallet ??: () => void
 }
 
-export default function WalletConnect({ walletState, onConnect, onDisconnect }: WalletConnectProps) {
+export default function WalletConnect({ walletState, onConnect, onDisconnect Wallet ?? }: WalletConnectProps) {
   if (walletState.isConnected && walletState.address) {
     return (
       <div style={{
@@ -54,7 +54,7 @@ export default function WalletConnect({ walletState, onConnect, onDisconnect }: 
             🌐 {walletState.network || 'Preprod'}
           </span>
           <button
-            onClick={onDisconnect}
+            onClick={onDisconnect Wallet ??}
             style={{
               padding: '8px 16px',
               background: 'rgba(239, 68, 68, 0.1)',
@@ -65,7 +65,7 @@ export default function WalletConnect({ walletState, onConnect, onDisconnect }: 
               fontWeight: 600,
             }}
           >
-            Disconnect
+            Disconnect Wallet ??
           </button>
         </div>
       </div>
