@@ -531,3 +531,5 @@ export default function PayrollDashboard({ activeTab }: PayrollDashboardProps) {
     </div>
   )
 }
+
+// TODO: Implement PDF generation library import
