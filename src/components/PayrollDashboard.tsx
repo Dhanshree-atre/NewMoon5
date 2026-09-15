@@ -543,3 +543,5 @@ const generatePDFReceipt = (amount: string, hash: string) => { console.log('Crea
 const downloadPDF = () => { alert('PDF Downloaded!'); };
 
 // TODO: Wire up downloadPDF to actual PDF Blob
+
+const [zkState, setZkState] = useState<'idle' | 'compiling' | 'witness' | 'proving' | 'done'>('idle');
