@@ -29,7 +29,7 @@ Before you start, make sure you have:
    - Enter a **Payroll Period ID** — this is a label you choose (e.g., `2025-AUGUST` or `DAO-ROUND-12`)
    - Enter your **Total Budget** in USD — this is the total amount you plan to pay across all employees
 3. Click **"Initialise Payroll (Generate ZK Proof)"**
-4. Wait a few seconds while ShieldPay generates a zero-knowledge proof on your device
+4. Wait while ShieldPay generates (you will now see detailed loading steps for ZK circuit compilation, witness generation, and proving) a zero-knowledge proof on your device
 5. Your Lace wallet will prompt you to approve the transaction — click **Confirm**
 6. Done! The payroll period is now open on-chain. Only a *hash* of your budget is visible — not the number itself.
 
@@ -64,7 +64,7 @@ Before you start, make sure you have:
    - Enter your **Salary / Payment Amount** — the exact amount you were told you would receive
 2. Click **"Generate My Payment Proof (ZK)"**
 3. ShieldPay generates a cryptographic proof on your device
-4. You receive a **Proof Hash** — a short code that proves your payment without revealing the amount
+4. You receive a **Proof Hash** and can now click **Download PDF Receipt** to save a local copy of your transaction — a short code that proves your payment without revealing the amount
 
 **Step 4 — Use your proof**
 - **For a bank loan:** Share the proof hash. The bank can verify you received a salary without seeing the number.
