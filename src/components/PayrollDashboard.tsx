@@ -539,3 +539,5 @@ const generatePDFReceipt = (amount: string, hash: string) => { console.log('Crea
 const generatePDFReceipt = (amount: string, hash: string) => { console.log('Creating PDF Blob...'); };
 
 // PDF includes employee ID, amount, and tx hash
+
+const downloadPDF = () => { alert('PDF Downloaded!'); };
