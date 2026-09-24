@@ -10,6 +10,12 @@
 
 🔗 https://new-moon-level4.vercel.app/
 
+## Feedback form
+https://docs.google.com/forms/d/e/1FAIpQLSf15vl4uc3D_IlEwzRmvHHLidfUQ2IdzZ5b3E01QQkBi45pTg/viewform
+
+## Feedbacks
+https://docs.google.com/spreadsheets/d/1vW6SEV52-JAy9A4Y3DYNu8Fz8dijMZnh64fwbAbsb9s/edit?resourcekey=&gid=2082627229#gid=2082627229
+
 ---
 
 ## Contract Address
